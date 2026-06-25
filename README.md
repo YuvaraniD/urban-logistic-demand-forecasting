@@ -65,7 +65,7 @@ LSTM substantially outperformed both statistical baselines by learning nonlinear
 
 ### 📅 Day-of-Week Trends
 
-![Day × Hour Heatmap](02_heatmap_dow_hour.png)
+![Day × Hour Heatmap](images/02_heatmap_dow_hour.png)
 
 - **Wednesday** experiences the highest logistics demand.
 - **Sunday** records the lowest activity.
@@ -75,7 +75,7 @@ LSTM substantially outperformed both statistical baselines by learning nonlinear
 
 ### 📈 Monthly Demand Trend
 
-![Monthly trend](03_monthly_trend.png)
+![Monthly trend](images/03_monthly_trend.png)
 
 Demand increased rapidly during early 2023, remained relatively stable through 2024–2025, and experienced a clear structural increase during late 2025.
 
@@ -83,7 +83,7 @@ Demand increased rapidly during early 2023, remained relatively stable through 2
 
 ### 🔬 STL Decomposition
 
-![STL decomposition](04_stl_decomposition.png)
+![STL decomposition](images/04_stl_decomposition.png)
 
 STL decomposition confirms strong weekly seasonality together with a long-term upward trend and a noticeable structural shift in late 2025.
 
@@ -91,7 +91,7 @@ STL decomposition confirms strong weekly seasonality together with a long-term u
 
 ### 🚨 Anomaly Detection
 
-![Anomaly detection](05_anomaly_detection.png)
+![Anomaly detection](images/05_anomaly_detection.png)
 
 Daily anomaly analysis identified demand spikes and suppressions associated with major Melbourne events and public holidays.
 
@@ -99,7 +99,7 @@ Daily anomaly analysis identified demand spikes and suppressions associated with
 
 ### 🎉 Event Analysis
 
-![Event analysis](06_anomaly_by_event.png)
+![Event analysis](images/06_anomaly_by_event.png)
 
 Large sporting events and festivals consistently increase freight demand, while Christmas Day and Boxing Day produce the lowest traffic volumes across the dataset.
 
@@ -107,7 +107,7 @@ Large sporting events and festivals consistently increase freight demand, while 
 
 ### 🏙️ Spatial Demand Distribution
 
-![Demand by sensor](08_spatial_demand_bars.png)
+![Demand by sensor](images/08_spatial_demand_bars.png)
 
 The majority of freight activity is concentrated within only a few transport sensors, with Queens Bridge Street representing the largest share of observed logistics demand.
 
@@ -115,7 +115,7 @@ The majority of freight activity is concentrated within only a few transport sen
 
 ### 🗺️ Geographic Distribution
 
-![Spatial map](09_spatial_map.png)
+![Spatial map](images/09_spatial_map.png)
 
 High-demand sensor locations cluster around Melbourne's CBD and Southbank corridor, highlighting the city's primary last-mile logistics zone.
 
@@ -125,7 +125,7 @@ High-demand sensor locations cluster around Melbourne's CBD and Southbank corrid
 
 ### SARIMA Forecast
 
-![SARIMA Forecast](10_sarima_forecast.png)
+![SARIMA Forecast](images/10_sarima_forecast.png)
 
 SARIMA captures the recurring seasonal pattern but struggles to adapt after the structural increase in demand during late 2025, leading to the highest forecasting error among the evaluated models.
 
@@ -133,7 +133,7 @@ SARIMA captures the recurring seasonal pattern but struggles to adapt after the 
 
 ### Prophet Forecast
 
-![Prophet Forecast](11_prophet_forecast.png)
+![Prophet Forecast](images/11_prophet_forecast.png)
 
 Prophet models the overall trend and seasonality more effectively than SARIMA but still underestimates peak demand following the structural shift.
 
@@ -141,7 +141,7 @@ Prophet models the overall trend and seasonality more effectively than SARIMA bu
 
 ### LSTM Forecast
 
-![LSTM Forecast](12_lstm_forecast.png)
+![LSTM Forecast](images/12_lstm_forecast.png)
 
 LSTM provides the closest fit to the observed demand, successfully capturing nonlinear temporal relationships and adapting to the higher demand baseline. This results in the lowest MAE and RMSE of all three models.
 ---
