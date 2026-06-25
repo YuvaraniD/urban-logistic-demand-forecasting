@@ -1,6 +1,6 @@
 # Urban Logistics Demand Forecasting – Melbourne
 
-## 📊 Project Overview
+## Project Overview
 
 This project analyses and forecasts urban freight demand patterns in Melbourne using transport activity sensor data as a proxy for last-mile delivery activity. The goal is to understand temporal and spatial demand behaviour and build predictive models to support city logistics planning, freight management, and traffic regulation.
 
@@ -8,7 +8,7 @@ The study applies statistical and deep learning approaches — **SARIMA**, **Pro
 
 ---
 
-## 🎯 Objectives
+## Objectives
 
 - Analyse hourly, daily, and monthly logistics demand patterns
 - Identify peak congestion periods and low-traffic windows
@@ -18,7 +18,7 @@ The study applies statistical and deep learning approaches — **SARIMA**, **Pro
 
 ---
 
-## 📁 Dataset
+## Dataset
 
 - **Source:** City of Melbourne Open Data – Transport Activity Counts
 - **Period:** 2023–2026
@@ -27,7 +27,7 @@ The study applies statistical and deep learning approaches — **SARIMA**, **Pro
 
 ---
 
-## ⚙️ Project Workflow
+## Project Workflow
 
 1. Data preparation and feature engineering
 2. Exploratory data analysis
@@ -39,7 +39,7 @@ The study applies statistical and deep learning approaches — **SARIMA**, **Pro
 
 ---
 
-## 📈 Model Performance
+## Model Performance
 
 | Model | MAE | RMSE | MAE % |
 |-------|------:|------:|------:|
@@ -51,9 +51,9 @@ LSTM substantially outperformed both statistical baselines by learning nonlinear
 
 ---
 
-## 🔍 Key Insights
+## Key Insights
 
-### ⏰ Temporal Patterns
+### Temporal Patterns
 
 ![Hourly demand pattern](images/01_hourly_pattern.png)
 
@@ -63,7 +63,7 @@ LSTM substantially outperformed both statistical baselines by learning nonlinear
 
 ---
 
-### 📅 Day-of-Week Trends
+### Day-of-Week Trends
 
 ![Day × Hour Heatmap](images/02_heatmap_dow_hour.png)
 
@@ -73,7 +73,7 @@ LSTM substantially outperformed both statistical baselines by learning nonlinear
 
 ---
 
-### 📈 Monthly Demand Trend
+### Monthly Demand Trend
 
 ![Monthly trend](images/03_monthly_trend.png)
 
@@ -81,7 +81,7 @@ Demand increased rapidly during early 2023, remained relatively stable through 2
 
 ---
 
-### 🔬 STL Decomposition
+### STL Decomposition
 
 ![STL decomposition](images/04_stl_decomposition.png)
 
@@ -89,7 +89,7 @@ STL decomposition confirms strong weekly seasonality together with a long-term u
 
 ---
 
-### 🚨 Anomaly Detection
+### Anomaly Detection
 
 ![Anomaly detection](images/05_anomaly_detection.png)
 
@@ -97,7 +97,7 @@ Daily anomaly analysis identified demand spikes and suppressions associated with
 
 ---
 
-### 🎉 Event Analysis
+### Event Analysis
 
 ![Event analysis](images/06_anomaly_by_event.png)
 
@@ -105,7 +105,7 @@ Large sporting events and festivals consistently increase freight demand, while 
 
 ---
 
-### 🏙️ Spatial Demand Distribution
+### Spatial Demand Distribution
 
 ![Demand by sensor](images/08_spatial_demand_bars.png)
 
@@ -113,7 +113,7 @@ The majority of freight activity is concentrated within only a few transport sen
 
 ---
 
-### 🗺️ Geographic Distribution
+### Geographic Distribution
 
 ![Spatial map](images/09_spatial_map.png)
 
@@ -121,7 +121,7 @@ High-demand sensor locations cluster around Melbourne's CBD and Southbank corrid
 
 ---
 
-## 📊 Forecasting Results
+## Forecasting Results
 
 ### SARIMA Forecast
 
@@ -146,7 +146,7 @@ Prophet models the overall trend and seasonality more effectively than SARIMA bu
 LSTM provides the closest fit to the observed demand, successfully capturing nonlinear temporal relationships and adapting to the higher demand baseline. This results in the lowest MAE and RMSE of all three models.
 ---
 
-## 🏙️ City Planning Recommendations
+## City Planning Recommendations
 
 - Prioritise loading zones within the CBD and Southbank corridor during weekday peak periods.
 - Schedule road maintenance during weekends and public holidays when freight demand is lowest.
@@ -156,13 +156,13 @@ LSTM provides the closest fit to the observed demand, successfully capturing non
 
 ---
 
-## 🧠 Key Takeaway
+## Key Takeaway
 
 Urban logistics demand in Melbourne is highly structured, seasonal, and event-driven rather than random. Among the evaluated forecasting models, **LSTM achieved the highest predictive accuracy**, demonstrating the value of deep learning for modelling complex urban freight demand patterns.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Python**
 - **Pandas**
@@ -175,7 +175,7 @@ Urban logistics demand in Melbourne is highly structured, seasonal, and event-dr
 
 ---
 
-## 🚀 Future Improvements
+## Future Improvements
 
 - Integrate weather and traffic conditions
 - Include economic indicators affecting freight demand
@@ -184,7 +184,7 @@ Urban logistics demand in Melbourne is highly structured, seasonal, and event-dr
 
 ---
 
-## 📌 Author
+## Author
 
 **Yuvarani Dharmasivam**
 
