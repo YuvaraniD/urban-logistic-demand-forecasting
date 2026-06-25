@@ -1,108 +1,192 @@
 # Urban Logistics Demand Forecasting – Melbourne
 
 ## 📊 Project Overview
+
 This project analyses and forecasts urban freight demand patterns in Melbourne using transport activity sensor data as a proxy for last-mile delivery activity. The goal is to understand temporal and spatial demand behaviour and build predictive models to support city logistics planning, freight management, and traffic regulation.
 
 The study applies statistical and deep learning approaches — **SARIMA**, **Prophet**, and **LSTM** — to model complex time-series patterns in urban logistics demand.
 
+---
+
 ## 🎯 Objectives
+
 - Analyse hourly, daily, and monthly logistics demand patterns
 - Identify peak congestion periods and low-traffic windows
 - Evaluate weekday, weekend, holiday, and event impacts
 - Build and compare predictive models for demand forecasting
 - Translate forecasts into actionable city planning recommendations
 
+---
+
 ## 📁 Dataset
-- **Source:** [Transport Activity Counts](https://data.melbourne.vic.gov.au/explore/dataset/transport-activity-counts/api/), City of Melbourne Open Data Portal
-- **Period:** 2023 – 2026
-- **Granularity:** Hourly vehicle counts across 36 sensor locations, filtered to vans and trucks only (proxy for delivery vehicles, since direct freight data isn't publicly available)
+
+- **Source:** City of Melbourne Open Data – Transport Activity Counts
+- **Period:** 2023–2026
+- **Granularity:** Hourly vehicle counts across 36 transport sensors
+- **Vehicle Types:** Vans and trucks only (used as a proxy for urban freight activity)
+
+---
 
 ## ⚙️ Project Workflow
-1. **Data Preparation** — combined yearly ZIP files, parsed timestamps, filtered to vans/trucks, engineered time features (hour, day, week, month)
-2. **Exploratory Data Analysis** — hourly/daily/monthly trends, day-of-week × hour heatmap
-3. **STL Decomposition & Anomaly Detection** — z-score anomaly detection on residuals
-4. **Stationarity & Lag Testing** — ADF test, ACF/PACF analysis
-5. **Spatial Analysis** — sensor-level and geographic demand concentration
-6. **Forecasting** — SARIMA, Prophet, LSTM model comparison
-7. **Planning Insights** — translating LSTM forecasts into operational recommendations
+
+1. Data preparation and feature engineering
+2. Exploratory data analysis
+3. STL decomposition and anomaly detection
+4. Stationarity and autocorrelation analysis
+5. Spatial demand analysis
+6. Forecasting using SARIMA, Prophet and LSTM
+7. Operational recommendations for city logistics planning
+
+---
 
 ## 📈 Model Performance
 
 | Model | MAE | RMSE | MAE % |
-|---|---|---|---|
+|-------|------:|------:|------:|
 | SARIMA | 43.42 | 70.16 | 61.7% |
 | Prophet | 34.62 | 49.55 | 49.2% |
 | **LSTM** | **13.23** | **21.26** | **18.8%** |
 
-LSTM outperformed both statistical baselines, achieving less than half the error of Prophet and a third of SARIMA. Its 168-hour (7-day) rolling input window allowed it to adapt to the late-2025 structural demand surge, while SARIMA and Prophet continued predicting from the lower historical baseline.
+LSTM substantially outperformed both statistical baselines by learning nonlinear temporal patterns and adapting to the structural demand increase observed in late 2025.
+
+---
 
 ## 🔍 Key Insights
 
 ### ⏰ Temporal Patterns
-![Hourly demand pattern](01_hourly_pattern.png)
-- Demand is highest between **10am–12pm**, peaking around **11am**
-- Vans drive the vast majority of demand variation; truck activity stays relatively flat throughout the day
-- Overnight demand (12am–5am) is minimal, with a sharp ramp-up between 6am–9am
 
-![LSTM predicted demand by hour](17_lstm_predicted_hourly.png)
-- LSTM forecasts confirm the same pattern: peak demand of ~171 predicted vehicles/hour at 11am–12pm, more than double the all-day average (~70/hr)
+![Hourly demand pattern](01_hourly_pattern.png)
+
+- Freight demand peaks between **10 AM and 12 PM**, with the highest activity around **11 AM**.
+- Vans account for most demand variation, while truck traffic remains comparatively stable.
+- Overnight demand is minimal before increasing rapidly during the morning.
+
+---
 
 ### 📅 Day-of-Week Trends
-![Day-of-week × hour heatmap](02_heatmap_dow_hour.png)
-- **Wednesday** is the busiest day; **Sunday** is the quietest
-- Weekend demand is **~42% of weekday demand** (a ~58% drop)
-- Peak demand window is consistently **9am–1pm on weekdays**
 
-### 📈 Monthly Trend & Structural Shift
+![Day × Hour Heatmap](02_heatmap_dow_hour.png)
+
+- **Wednesday** experiences the highest logistics demand.
+- **Sunday** records the lowest activity.
+- Weekday peak demand consistently occurs between **9 AM and 1 PM**.
+
+---
+
+### 📈 Monthly Demand Trend
+
 ![Monthly trend](03_monthly_trend.png)
-- Demand grew rapidly in early 2023, stabilised through 2023–2025, then surged sharply in **late 2025** to a new, higher baseline
+
+Demand increased rapidly during early 2023, remained relatively stable through 2024–2025, and experienced a clear structural increase during late 2025.
+
+---
 
 ### 🔬 STL Decomposition
+
 ![STL decomposition](04_stl_decomposition.png)
-- Confirms strong weekly seasonality and a clear late-2025 structural shift in the trend component
 
-### 🚨 Anomaly Detection & Events
-![Anomaly detection on daily series](05_anomaly_detection.png)
-- **56 anomaly days** were detected across the dataset, **all** mapped to known Melbourne events or public holidays — zero unidentified anomalies
-- **22 suppression days** (holidays) and **34 surge days** (major events)
+STL decomposition confirms strong weekly seasonality together with a long-term upward trend and a noticeable structural shift in late 2025.
 
-![Anomalies by event type](06_anomaly_by_event.png)
-- Christmas Day and Boxing Day show the lowest counts in the dataset
-- F1 Grand Prix, Australian Open, AFL Grand Final, and Melbourne Cup consistently produce demand surges
+---
 
-### 🏙️ Spatial Concentration
-![Demand by sensor location](08_spatial_demand_bars.png)
-- Demand is extremely concentrated: the **top 3 sensors account for 94.2%** of all van + truck activity
-- **Queens Bridge Street** alone accounts for **39.1%** of total activity
+### 🚨 Anomaly Detection
 
-![Geographic distribution of demand](09_spatial_map.png)
-- High-demand sensors cluster tightly along the **Southbank and CBD corridor**, confirming last-mile logistics activity is concentrated in Melbourne's inner-city commercial precinct
+![Anomaly detection](05_anomaly_detection.png)
+
+Daily anomaly analysis identified demand spikes and suppressions associated with major Melbourne events and public holidays.
+
+---
+
+### 🎉 Event Analysis
+
+![Event analysis](06_anomaly_by_event.png)
+
+Large sporting events and festivals consistently increase freight demand, while Christmas Day and Boxing Day produce the lowest traffic volumes across the dataset.
+
+---
+
+### 🏙️ Spatial Demand Distribution
+
+![Demand by sensor](08_spatial_demand_bars.png)
+
+The majority of freight activity is concentrated within only a few transport sensors, with Queens Bridge Street representing the largest share of observed logistics demand.
+
+---
+
+### 🗺️ Geographic Distribution
+
+![Spatial map](09_spatial_map.png)
+
+High-demand sensor locations cluster around Melbourne's CBD and Southbank corridor, highlighting the city's primary last-mile logistics zone.
+
+---
+
+## 📊 Forecasting Results
+
+### SARIMA Forecast
+
+![SARIMA Forecast](10_sarima_forecast.png)
+
+SARIMA captures the recurring seasonal pattern but struggles to adapt after the structural increase in demand during late 2025, leading to the highest forecasting error among the evaluated models.
+
+---
+
+### Prophet Forecast
+
+![Prophet Forecast](11_prophet_forecast.png)
+
+Prophet models the overall trend and seasonality more effectively than SARIMA but still underestimates peak demand following the structural shift.
+
+---
+
+### LSTM Forecast
+
+![LSTM Forecast](12_lstm_forecast.png)
+
+LSTM provides the closest fit to the observed demand, successfully capturing nonlinear temporal relationships and adapting to the higher demand baseline. This results in the lowest MAE and RMSE of all three models.
+---
 
 ## 🏙️ City Planning Recommendations
-- Prioritise loading zone availability and traffic management in the **CBD/Southbank corridor**, especially **9am–1pm on weekdays**
-- Scale down enforcement and operations on **public holidays** (demand drops ~70%)
-- Prepare enhanced logistics access for major recurring events (AFL Grand Final, F1 Grand Prix, Australian Open)
-- Schedule road works and infrastructure upgrades on **weekends and public holidays**, when demand is lowest
-- Update capacity planning models to reflect the **higher post-2025 demand baseline**
-- Retrain the LSTM model periodically as new data becomes available
+
+- Prioritise loading zones within the CBD and Southbank corridor during weekday peak periods.
+- Schedule road maintenance during weekends and public holidays when freight demand is lowest.
+- Prepare additional logistics access during major annual events.
+- Update planning models to reflect the higher post-2025 freight demand baseline.
+- Retrain forecasting models periodically as new transport data becomes available.
+
+---
 
 ## 🧠 Key Takeaway
-Urban logistics demand in Melbourne is highly structured, time-dependent, and event-driven rather than random. Deep learning (LSTM) significantly outperforms classical statistical models by capturing nonlinear temporal patterns and adapting to structural shifts in demand.
+
+Urban logistics demand in Melbourne is highly structured, seasonal, and event-driven rather than random. Among the evaluated forecasting models, **LSTM achieved the highest predictive accuracy**, demonstrating the value of deep learning for modelling complex urban freight demand patterns.
+
+---
 
 ## 🛠️ Tech Stack
-- **Languages:** Python
-- **Data Processing:** Pandas, NumPy
-- **Visualisation:** Matplotlib, Seaborn
-- **Statistical Modelling:** Statsmodels (SARIMA, STL, ADF, ACF/PACF)
-- **Forecasting:** Prophet
-- **Deep Learning:** TensorFlow / Keras (LSTM)
+
+- **Python**
+- **Pandas**
+- **NumPy**
+- **Matplotlib**
+- **Seaborn**
+- **Statsmodels**
+- **Prophet**
+- **TensorFlow / Keras**
+
+---
 
 ## 🚀 Future Improvements
-- Incorporate real-time traffic data
-- Add external variables (weather, fuel prices)
-- Deploy the model as a forecasting API
-- Extend to multi-city comparison
+
+- Integrate weather and traffic conditions
+- Include economic indicators affecting freight demand
+- Deploy the forecasting model as a REST API
+- Extend the framework to multiple Australian cities
+
+---
 
 ## 📌 Author
+
 **Yuvarani Dharmasivam**
-Master of Data Science – Deakin University
+
+Master of Data Science  
+Deakin University
