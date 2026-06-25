@@ -55,7 +55,7 @@ LSTM substantially outperformed both statistical baselines by learning nonlinear
 
 ### ⏰ Temporal Patterns
 
-![Hourly demand pattern](01_hourly_pattern.png)
+![Hourly demand pattern](images/01_hourly_pattern.png)
 
 - Freight demand peaks between **10 AM and 12 PM**, with the highest activity around **11 AM**.
 - Vans account for most demand variation, while truck traffic remains comparatively stable.
