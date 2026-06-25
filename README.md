@@ -32,7 +32,7 @@ The study applies statistical and deep learning approaches — **SARIMA**, **Pro
 |---|---|---|---|
 | SARIMA | 43.42 | 70.16 | 61.7% |
 | Prophet | 34.62 | 49.55 | 49.2% |
-| **LSTM** | **14.07** | **22.45** | **20.0%** |
+| **LSTM** | **13.23** | **21.26** | **18.8%** |
 
 LSTM outperformed both statistical baselines, achieving less than half the error of Prophet and a third of SARIMA. Its 168-hour (7-day) rolling input window allowed it to adapt to the late-2025 structural demand surge, while SARIMA and Prophet continued predicting from the lower historical baseline.
 
